@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_04_221919) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_192601) do
+  create_table "albums", force: :cascade do |t|
+    t.string "title"
+    t.integer "year"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tests", force: :cascade do |t|
     t.string "title"
     t.integer "attempt"
@@ -18,4 +32,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_221919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tracks", force: :cascade do |t|
+    t.integer "track"
+    t.string "title"
+    t.string "duration"
+    t.integer "year"
+    t.integer "album_id", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_tracks_on_album_id"
+    t.index ["artist_id"], name: "index_tracks_on_artist_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "tracks", "albums"
+  add_foreign_key "tracks", "artists"
 end
