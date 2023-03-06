@@ -8,8 +8,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/1 or /artists/1.json
   def show
-    @artist = Artist.find(params[:id])
-    render json: @artist, status: :ok
+    render json: @artist, status: :ok, serializer: ArtistswithalbumsSerializer
   end
 
   # POST /artists or /artists.json

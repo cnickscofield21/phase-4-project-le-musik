@@ -8,7 +8,6 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1 or /albums/1.json
   def show
-    @album = Album.find(params[:id])
     render json: @album, status: :ok
   end
 
