@@ -3,8 +3,8 @@
 #
 # Examples:
 puts "Seeding Users"
-User.create(username: "nick", password_digest: "password", admin: true)
-User.create(username: "joey", password_digest: "password", admin: false)
+User.create(username: "nick", password: "password", admin: true)
+User.create(username: "joey", password: "password", admin: false)
 
 
 puts "Seeding Artists"
