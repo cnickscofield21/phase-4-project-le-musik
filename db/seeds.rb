@@ -8,18 +8,18 @@ User.create(username: "joey", password: "password", admin: false)
 
 
 puts "Seeding Artists"
-cb = Artist.create(name: "Childish Gambino")
-ts = Artist.create(name: "Taylor Swift")
-dp = Artist.create(name: "Daft Punk")
-cp = Artist.create(name: "Coldplay")
+cb = Artist.create(name: "Childish Gambino", image: "childish_gambino.png")
+ts = Artist.create(name: "Taylor Swift", image: "taylor_twift.png")
+dp = Artist.create(name: "Daft Punk", image: "daft_punk.png")
+cp = Artist.create(name: "Coldplay", image: "coldplay.png")
 
 puts "Seeding Albums"
 
-bti = Album.create(title: "Because the Internet", year: 2013, image: "https://upload.wikimedia.org/wikipedia/en/7/70/Childish-gambino-because-the-internet.gif")
-ts1989 = Album.create(title: "1989", year: 2014, image: "https://pyxis.nymag.com/v1/imgs/5a1/58c/580de90bf142c7660dcbaf8faa789a61b1-20-taylor-swift-1989.2x.w710.png")
-red = Album.create(title: "Red", year: 2012, image: "https://upload.wikimedia.org/wikipedia/en/e/e8/Taylor_Swift_-_Red.png")
-ram = Album.create(title: "Random Access Memories", year: 2013, image: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Random_Access_Memories.jpg/220px-Random_Access_Memories.jpg")
-mx = Album.create(title: "Mylo Xyloto", year: 2011, image: "https://i.scdn.co/image/ab67616d0000b273de0cd11d7b31c3bd1fd5983d")
+bti = Album.create(title: "Because the Internet", year: 2013, image: "because_the_internet.png")
+ts1989 = Album.create(title: "1989", year: 2014, image: "1989.png")
+red = Album.create(title: "Red", year: 2012, image: "red.png")
+ram = Album.create(title: "Random Access Memories", year: 2013, image: "random_access_memories.png")
+mx = Album.create(title: "Mylo Xyloto", year: 2011, image: "mylo_xyloto.png")
 
 puts "Seeding Because the Internet"
 Track.create(track: 1, title: "The Library(Intro)", duration: "0:05", year: 2013, album_id: bti.id, artist_id: cb.id)
