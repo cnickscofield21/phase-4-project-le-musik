@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import Button from 'react-bootstrap/Button';
 import './App.css'
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      {/* Button below was added to test connection to Bootstrap-Components */}
+      <Button />
     </div>
   )
 }
