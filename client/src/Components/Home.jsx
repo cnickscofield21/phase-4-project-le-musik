@@ -18,4 +18,4 @@ function Home(){
     <h1>Homepage with albums</h1>
     </>)
 }
-export default Home
+export default Home 
