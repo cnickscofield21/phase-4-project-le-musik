@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import Button from 'react-bootstrap/Button';
 import './App.css'
+import Login from './Components/Login'
+import {BrowserRouter} from "react-router-dom"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <div>
+        <Login/>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
