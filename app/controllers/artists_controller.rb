@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[ show edit update destroy ]
+  # skip_before_action :authorized_user
 
   # GET /artists or /artists.json
   def index

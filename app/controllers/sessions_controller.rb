@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     else
       render json: {error: "Invalid username and/or password"}, status: :unauthorized
     end
+    puts session
   end
 
   def destroy

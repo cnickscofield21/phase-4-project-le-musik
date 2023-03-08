@@ -6,7 +6,13 @@ class ApplicationController < ActionController::Base
   # https://github.com/twilio/authy-devise/issues/91 (bottom of page)
   # protect_from_forgery prepend: true, with: :exception
   skip_before_action :verify_authenticity_token
-  before_action :authorized_user
+  # before_action :current_user
+  # before_action :authorized_user
+
+  def hello_world
+    session[:count] = (session[:count] || 0) + 1
+    render json: { count: session[:count] }
+  end
 
   def current_user
     user = User.find_by(id:session[:user_id])
@@ -14,7 +20,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized_user
-    render json: {error: "Not Authorized"}, status: :unauthorized unless current_user
+    @current_user = User.find_by(id:session[:user_id])
+    render json: {error: "Not Authorized"}, status: :unauthorized unless @current_user
   end
 
   def render_unprocessable_entity(invalid)

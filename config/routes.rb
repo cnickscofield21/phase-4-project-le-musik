@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/authorized', to: 'users#show'
-
+  get "/hello", to: 'users#hello_world'
 end
