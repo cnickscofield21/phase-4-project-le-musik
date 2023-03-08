@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react"
+import AlbumCard from "./AlbumCard"
 
 function Home(){
 
@@ -20,15 +21,20 @@ function Home(){
     // .then(r => r.json())
     // .then(data => console.log(data))
 
-
     useEffect(() =>{
         fetch("/albums")
         .then(r=>r.json())
-        .then(data => console.log(data))
+        .then(setAlbums)
     },[])
+
+    console.log(albums)
+    const albumCards = albums.map(album => {
+        return(<AlbumCard album={album}/>)
+    })
 
     return (<>
     <h1>Homepage with albums</h1>
+    {albumCards}
     </>)
 }
 export default Home
