@@ -33,7 +33,7 @@ function Home(){
     })
 
     return (<>
-    <h1>Homepage with albums</h1>
+    <h1 style={{textAlign: "center"}}>Albums</h1>
     {albumCards}
     </>)
 }

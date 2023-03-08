@@ -6,8 +6,8 @@ function AlbumCard({album}){
     const navigate = useNavigate()
     return (
     <div>
-    <Card onClick={()=>navigate(`/albums/:${album.id}`)} style={{ width: '18rem', display: "flex", float: "Left", margin: "5px"}}>
-      <Card.Img variant="top" src={``}/>
+    <Card onClick={()=>navigate(`/albums/${album.id}`)} style={{ width: '18rem', display: "flex", float: "Left", margin: "5px"}}>
+      <Card.Img variant="top" src={`album/${album.image}`}/>
       <Card.Body>
         <Card.Title>{album.title}</Card.Title>
       </Card.Body>
