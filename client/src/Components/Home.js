@@ -29,7 +29,7 @@ function Home(){
 
     console.log(albums)
     const albumCards = albums.map(album => {
-        return(<AlbumCard album={album}/>)
+        return(<AlbumCard key={album.id} album={album}/>)
     })
 
     return (<>
