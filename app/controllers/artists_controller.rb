@@ -1,30 +1,39 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: %i[ show edit update destroy ]
-  # skip_before_action :authorized_user
+  before_action :set_artist, only: %i[ show update destroy ]
 
-  # GET /artists or /artists.json
+  # GET /artists
   def index
     @artists = Artist.all
+
+    render json: @artists
   end
 
-  # GET /artists/1 or /artists/1.json
+  # GET /artists/1
   def show
-    render json: @artist, status: :ok, serializer: ArtistswithalbumsSerializer
+    render json: @artist
   end
 
-  # POST /artists or /artists.json
+  # POST /artists
   def create
-    @artist = Artist.create!(artist_params)
-    render json: @artist, status: :created
+    @artist = Artist.new(artist_params)
+
+    if @artist.save
+      render json: @artist, status: :created, location: @artist
+    else
+      render json: @artist.errors, status: :unprocessable_entity
+    end
   end
 
-  # PATCH/PUT /artists/1 or /artists/1.json
+  # PATCH/PUT /artists/1
   def update
-      @artist.update!(artist_params)
-      render json: @artist, status: :updated
+    if @artist.update(artist_params)
+      render json: @artist
+    else
+      render json: @artist.errors, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /artists/1 or /artists/1.json
+  # DELETE /artists/1
   def destroy
     @artist.destroy
   end
@@ -37,6 +46,6 @@ class ArtistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artist_params
-      params.permit(:name, :image)
+      params.require(:artist).permit(:name, :image)
     end
 end

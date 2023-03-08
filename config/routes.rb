@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/authorized', to: 'users#show'
-  get "/hello", to: 'users#hello_world'
+
+  # route to test your configuration
+  get '/hello', to: 'application#hello_world'
 end

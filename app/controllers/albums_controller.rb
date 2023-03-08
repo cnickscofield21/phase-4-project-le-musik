@@ -1,30 +1,39 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy ]
-  # skip_before_action :authorized_user
+  before_action :set_album, only: %i[ show update destroy ]
 
-  # GET /albums or /albums.json
+  # GET /albums
   def index
     @albums = Album.all
+
+    render json: @albums
   end
 
-  # GET /albums/1 or /albums/1.json
+  # GET /albums/1
   def show
-    render json: @album, status: :ok
+    render json: @album
   end
 
-  # POST /albums or /albums.json
+  # POST /albums
   def create
-    @album = Album.create!(album_params)
-    render json: @album, status: :created
+    @album = Album.new(album_params)
+
+    if @album.save
+      render json: @album, status: :created, location: @album
+    else
+      render json: @album.errors, status: :unprocessable_entity
+    end
   end
 
-  # PATCH/PUT /albums/1 or /albums/1.json
+  # PATCH/PUT /albums/1
   def update
-      @album.update!(album_params)
-      render json: @album, status: :updated
+    if @album.update(album_params)
+      render json: @album
+    else
+      render json: @album.errors, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /albums/1 or /albums/1.json
+  # DELETE /albums/1
   def destroy
     @album.destroy
   end
@@ -37,6 +46,6 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.permit(:title, :year, :image)
+      params.require(:album).permit(:title, :year, :image)
     end
 end

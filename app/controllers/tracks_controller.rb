@@ -1,31 +1,39 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: %i[ show edit update destroy ]
-  # skip_before_action :authorized_user
+  before_action :set_track, only: %i[ show update destroy ]
 
-  # GET /tracks or /tracks.json
+  # GET /tracks
   def index
     @tracks = Track.all
-    render json: @tracks, status: :ok
+
+    render json: @tracks
   end
 
-  # GET /tracks/1 or /tracks/1.json
+  # GET /tracks/1
   def show
-    render json: @track, status: :ok
+    render json: @track
   end
 
-  # POST /tracks or /tracks.json
+  # POST /tracks
   def create
-    @track = Track.create!(track_params)
-    render json: @track, status: :created
+    @track = Track.new(track_params)
+
+    if @track.save
+      render json: @track, status: :created, location: @track
+    else
+      render json: @track.errors, status: :unprocessable_entity
+    end
   end
 
-  # PATCH/PUT /tracks/1 or /tracks/1.json
+  # PATCH/PUT /tracks/1
   def update
-  @track.update!(track_params)
-  render json: @track, status: :updated
+    if @track.update(track_params)
+      render json: @track
+    else
+      render json: @track.errors, status: :unprocessable_entity
+    end
   end
 
-  # DELETE /tracks/1 or /tracks/1.json
+  # DELETE /tracks/1
   def destroy
     @track.destroy
   end
@@ -38,6 +46,6 @@ class TracksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def track_params
-      params.permit(:track, :title, :duration, :year, :album_id, :artist_id)
+      params.require(:track).permit(:track, :title, :duration, :year, :album_id, :artist_id)
     end
 end
