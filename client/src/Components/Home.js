@@ -4,26 +4,26 @@ function Home(){
 
     const [albums, setAlbums]=useState([])
 
-    const user = {
-        username: "nick",
-        password: "password"
-    }
+    // const user = {
+    //     username: "nick",
+    //     password: "password"
+    // }
 
-    const loginObj = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(user)
-    }
+    // const loginObj = {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(user)
+    // }
 
+
+    // fetch('/login', loginObj)
+    // .then(r => r.json())
+    // .then(data => console.log(data))
 
 
     useEffect(() =>{
-        fetch("http://localhost:3000/albums")
+        fetch("/albums")
         .then(r=>r.json())
-        .then(data => console.log(data))
-
-        fetch('http://localhost:3000/login', loginObj)
-        .then(r => r.json())
         .then(data => console.log(data))
     },[])
 
